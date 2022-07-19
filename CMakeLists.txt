@@ -11,6 +11,12 @@ file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
-target_link_libraries(${PROJECT_NAME} glfw)
+find_package(Vulkan REQUIRED)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/vendors/glm)
+target_link_libraries(${PROJECT_NAME} glfw Vulkan::Vulkan)
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/vendors/glm
+PRIVATE ${VULKAN_INCLUDE_DIRS})
+
+
+
